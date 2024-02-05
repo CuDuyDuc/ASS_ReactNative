@@ -1,11 +1,10 @@
 import React from 'react';
-import { Text, View } from 'react-native';
+import { ImageBackground, Text, View } from 'react-native';
+import IMAGES from '../assets/images/Images';
 
 const SplashScreen = () => {
     return (
-        <View>
-            <Text>Hello SplashScreen</Text>
-        </View>
+        <ImageBackground source={IMAGES.Splash_Logo} style = {{flex : 1}}></ImageBackground>
     )
 }
 
