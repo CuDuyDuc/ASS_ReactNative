@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
   text: {
     color: COLORS.HEX_ORANGE,
     fontSize: 20,
-    fontWeight: '500'
+    fontWeight: '500',
   }
 })
 
