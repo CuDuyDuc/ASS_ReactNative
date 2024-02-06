@@ -1,8 +1,8 @@
 const IMAGES = {
     Splash_Logo: require('./splash_screen.png'),
-    Coffe_Onboarding: require('./coffee_onboarding2.png'),
-    Coffe_Onboarding1: require('./coffee_onboarding.png'),
-    Coffe_Onboarding2: require('./coffee_onboarding1.png'),
+    Onboarding: require('./onboarding.png'),
+    Onboarding1: require('./onboarding1.png'),
+    Onboarding2: require('./onboarding2.png'),
     FbIcon : require('./icon_fb.png'),
     GgIcon: require('./icon_gg.png'),
     LogoLogin : require('./login.png'),
