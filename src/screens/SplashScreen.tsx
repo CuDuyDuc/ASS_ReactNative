@@ -1,5 +1,5 @@
 import React from 'react';
-import { ImageBackground, Text, View } from 'react-native';
+import { ImageBackground } from 'react-native';
 import IMAGES from '../assets/images/Images';
 
 const SplashScreen = () => {
