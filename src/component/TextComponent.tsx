@@ -23,8 +23,8 @@ const TextComponent = (props : Props) => {
         {
             color: color ?? COLORS.WHITE,  // color của người dùng truyền vào hoặc color tích hợp sẵn
             flex: flex ?? 0, // nếu không truyền flex thì mặc định sẽ là 0
-            fontSize: size ?? title ? 24 : 16, //custom size hoặc nếu title thì là 24 còn text thì là 16
-            fontFamily: font ?? title ? FONTFAMILY.poppins_bold : FONTFAMILY.poppins_regular, // nếu title thì bold
+            fontSize: size ? size : title ? 34 : 16, //custom size hoặc nếu title thì là 34 còn text thì là 16
+            fontFamily: font ? font : FONTFAMILY.poppins_regular, // nếu title thì bold
         },
         styles,
     ]}>{text}</Text>

@@ -9,7 +9,7 @@ export const globalStyle = StyleSheet.create({
     text: {
         fontFamily: FONTFAMILY.poppins_regular,
         fontSize: 16,
-        color: COLORS.WHITE
+        color: COLORS.HEX_LIGHT_GREY
     },
     button: {
         borderRadius: 12,
@@ -19,5 +19,14 @@ export const globalStyle = StyleSheet.create({
         paddingHorizontal: 10,
         minHeight: 56,
         flexDirection: 'row'
+    },
+    section: {
+        paddingHorizontal: 15,
+        paddingBottom: 20,
+    }, 
+    row: {
+        flexDirection: 'row',
+        justifyContent: 'flex-start',
+        alignItems: 'center'
     }
 })

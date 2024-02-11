@@ -3,8 +3,6 @@ const IMAGES = {
     Onboarding: require('./onboarding.png'),
     Onboarding1: require('./onboarding1.png'),
     Onboarding2: require('./onboarding2.png'),
-    FbIcon : require('./icon_fb.png'),
-    GgIcon: require('./icon_gg.png'),
     LogoLogin : require('./login.png'),
     Home : require('./home.png'),
     Cart : require('./cart.png'),

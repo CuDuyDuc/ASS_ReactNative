@@ -39,10 +39,11 @@ const ButtonComponent = (props: Props) => {
       {icon && icon}
       <TextComponent
         text={text}
-        color={textColor ?? COLORS.HEX_ORANGE}
+        color={textColor ?? COLORS.WHITE}
         font={FONTFAMILY.poppins_bold}
         styles={[textStyles, {
-          marginLeft: icon ? 15 : 0
+          marginLeft: icon ? 15 : 0,
+          fontSize: 16
         },
         ]}
         flex={icon && iconFlex === 'right' ? 1 : 0}
