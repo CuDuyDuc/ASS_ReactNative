@@ -1,4 +1,4 @@
-import { TouchableOpacity, StyleProp, ViewStyle, TextProps, TextStyle } from 'react-native'
+import { TouchableOpacity, StyleProp, ViewStyle,TextStyle } from 'react-native'
 import React, { ReactNode } from 'react'
 import TextComponent from './TextComponent';
 import { globalStyle } from '../styles/globalStyle';
@@ -13,6 +13,7 @@ interface Props {
   styles?: StyleProp<ViewStyle>;
   textColor?: string;
   textStyles?: StyleProp<TextStyle>;
+  textFont?: string;
   onPress?: () => void;
   iconFlex?: 'right' | 'left';
 }
@@ -26,6 +27,7 @@ const ButtonComponent = (props: Props) => {
     styles,
     textColor,
     textStyles,
+    textFont,
     onPress,
     iconFlex } = props;
   // custom button sau đó là style riêng và cuối cùng là styles đè lên
@@ -36,14 +38,15 @@ const ButtonComponent = (props: Props) => {
         globalStyle.button, {
           backgroundColor: color ?? COLORS.HEX_ORANGE,
         }, styles]}>
-      {icon && icon}
+      {icon && iconFlex === 'left' && icon}
       <TextComponent
         text={text}
         color={textColor ?? COLORS.WHITE}
-        font={FONTFAMILY.poppins_bold}
+        font={textFont ?? FONTFAMILY.poppins_bold}
         styles={[textStyles, {
           marginLeft: icon ? 15 : 0,
-          fontSize: 16
+          fontSize: 16, 
+          textAlign: 'center'
         },
         ]}
         flex={icon && iconFlex === 'right' ? 1 : 0}
@@ -51,7 +54,7 @@ const ButtonComponent = (props: Props) => {
       {icon && iconFlex === 'right' && icon}
     </TouchableOpacity> // nếu icon và iconFlex = right thì nó sẽ nằm về phía bên phải
   ) : (
-    <TouchableOpacity>
+    <TouchableOpacity onPress={onPress}>
       <TextComponent 
         text={text}
         color={type === 'link' ? COLORS.HEX_ORANGE : COLORS.HEX_BLACK}/>

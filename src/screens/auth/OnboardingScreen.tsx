@@ -1,4 +1,4 @@
-import { View, Text, Image, TouchableOpacity, StyleSheet } from 'react-native'
+import { View,Image, TouchableOpacity, StyleSheet } from 'react-native'
 import React, { useState } from 'react'
 import { globalStyle } from '../../styles/globalStyle';
 import Swiper from 'react-native-swiper';

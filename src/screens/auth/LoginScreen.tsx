@@ -1,18 +1,24 @@
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, { useState } from 'react';
 import { Image, Switch } from 'react-native';
-import { ButtonComponent, InputComponent, KeyboardAvoidingWrapper, RowComponent, SectionComponent, TextComponent } from '../../component';
+import { 
+    ButtonComponent, 
+    InputComponent, 
+    KeyboardAvoidingWrapper, 
+    RowComponent, 
+    SectionComponent, 
+    TextComponent } from '../../component';
 import { Lock, Sms } from 'iconsax-react-native';
 import COLORS from '../../assets/colors/Colors';
 import IMAGES from '../../assets/images/Images';
 import { FONTFAMILY } from '../../../assets/fonts';
+import { Facebook, Google } from '../../assets/svgs';
 
-const LoginScreen = () => {
+const LoginScreen = ({navigation}: any) => {
 
     // Lấy dữ liệu
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [isRemember, setIsRemember] = useState(true);
+    const [isRemember, setIsRemember] = useState(false);
 
     return (
         <KeyboardAvoidingWrapper>
@@ -29,8 +35,8 @@ const LoginScreen = () => {
             <SectionComponent>
                 <TextComponent
                     title
-                    text='Sign in'
-                    size={50}
+                    text='Đăng Nhập'
+                    size={45}
                     font={FONTFAMILY.poppins_bold}
                     styles={{ marginBottom: 20, }} />
                 <InputComponent
@@ -41,7 +47,7 @@ const LoginScreen = () => {
                     affix={<Sms size={22} color={COLORS.HEX_LIGHT_GREY} />} />
                 <InputComponent
                     value={password}
-                    placeholder='Password'
+                    placeholder='Mật khẩu'
                     onChange={val => setPassword(val)}
                     isPassword
                     affix={<Lock size={22} color={COLORS.HEX_LIGHT_GREY} />} />
@@ -54,20 +60,20 @@ const LoginScreen = () => {
                             thumbColor={isRemember ? COLORS.WHITE : COLORS.HEX_ORANGE}
                             value={isRemember}
                             onChange={() => setIsRemember(!isRemember)} />
-                        <TextComponent text='Remember me' />
+                        <TextComponent text='Ghi nhớ tài khoản' />
                     </RowComponent>
                     <ButtonComponent
-                        text='Forgot Password?'
-                        onPress={() => { }}
+                        text='Quên mật khẩu?'
+                        onPress={() => navigation.navigate('ForgotPassWord') }
                         type="link" />
                 </RowComponent>
             </SectionComponent>
             <SectionComponent styles={{ marginTop: 20 }}>
-                <ButtonComponent text='SIGN IN' type='orange' />
+                <ButtonComponent text='ĐĂNG NHẬP' type='orange' />
             </SectionComponent>
             <SectionComponent>
                 <TextComponent
-                    text='OR'
+                    text='Đăng nhập với'
                     color={COLORS.HEX_LIGHT_GREY}
                     styles={{
                         textAlign: 'center',
@@ -77,7 +83,7 @@ const LoginScreen = () => {
                     }} />
                 <RowComponent>
                     <ButtonComponent 
-                        text='with Google' 
+                        text='Google' 
                         iconFlex='left'
                         type='orange'
                         styles = {{
@@ -85,20 +91,24 @@ const LoginScreen = () => {
                             flex: 1, 
                             marginRight: 7}}
                         textColor={COLORS.HEX_LIGHT_GREY}
-                        
+                        icon ={<Google/>}
                         />
                     <ButtonComponent 
-                        text='with Facebook' 
+                        text='Facebook' 
                         iconFlex='left'
                         type='orange'
                         styles = {{backgroundColor: COLORS.WHITE, flex: 1}}
-                        textColor={COLORS.HEX_LIGHT_GREY}/>    
+                        textColor={COLORS.HEX_LIGHT_GREY}
+                        icon= {<Facebook/>}/>    
+
                 </RowComponent>
             </SectionComponent>
             <SectionComponent>
                 <RowComponent justify='center'>
-                    <TextComponent text="Don't have an account?  " />
-                    <ButtonComponent type='link' text='Sign up' />
+                    <TextComponent text="Bạn chưa có tài khoản?  " />
+                    <ButtonComponent type='link' text='Đăng ký' onPress={() => {
+                        navigation.navigate('SignUpScreen')
+                    }}/>
                 </RowComponent>
             </SectionComponent>
         </KeyboardAvoidingWrapper>
