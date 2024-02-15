@@ -13,6 +13,7 @@ const OnboardingScreen = ({ navigation }: any) => {
   return (
     <View style={[globalStyle.container]}>
       <Swiper style={{}}
+        removeClippedSubviews={true}
         loop={false}
         onIndexChanged={num => setIndex(num)}
         index={index}

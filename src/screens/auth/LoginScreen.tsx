@@ -12,6 +12,7 @@ import COLORS from '../../assets/colors/Colors';
 import IMAGES from '../../assets/images/Images';
 import { FONTFAMILY } from '../../../assets/fonts';
 import { Facebook, Google } from '../../assets/svgs';
+import authenticationAPI from '../../apis/authAPI';
 
 const LoginScreen = ({navigation}: any) => {
 
@@ -20,6 +21,15 @@ const LoginScreen = ({navigation}: any) => {
     const [password, setPassword] = useState('');
     const [isRemember, setIsRemember] = useState(false);
 
+    const handleLogin = async () => {
+        try {
+            const res = await authenticationAPI.HandleAuthentication('/login');
+            console.log(res)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+  
     return (
         <KeyboardAvoidingWrapper>
             <SectionComponent
@@ -69,7 +79,10 @@ const LoginScreen = ({navigation}: any) => {
                 </RowComponent>
             </SectionComponent>
             <SectionComponent styles={{ marginTop: 20 }}>
-                <ButtonComponent text='ĐĂNG NHẬP' type='orange' />
+                <ButtonComponent 
+                    text='ĐĂNG NHẬP' 
+                    type='orange' 
+                    onPress={handleLogin}/>
             </SectionComponent>
             <SectionComponent>
                 <TextComponent
