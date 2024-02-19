@@ -14,11 +14,12 @@ interface Props {
     isPassword?: boolean, // kiểm tra xem có phải là mật khẩu hay không
     allowClear?: boolean, // khi nhập xoh họ muốn xóa thì nó là allowClear
     type?: KeyboardType,
+    onEnd?: () => void; // khi người dùng hết nhập dữ liệu
 }
 
 const InputComponent = (props: Props) => {
 
-    const { value, onChange, affix, placeholder, suffix, isPassword, allowClear, type} = props;
+    const { value, onChange, affix, placeholder, suffix, isPassword, allowClear, type, onEnd} = props;
 
     const [isShowPass, setIsShowPass] = useState(isPassword ?? false); // nếu có thì hiển thị không thì là false
     return (
@@ -31,7 +32,9 @@ const InputComponent = (props: Props) => {
                 onChangeText={val => onChange(val)} 
                 secureTextEntry={isShowPass}
                 placeholderTextColor={COLORS.HEX_LIGHT_GREY}
-                keyboardType={type ?? 'default'}/> 
+                keyboardType={type ?? 'default'}
+                autoCapitalize="none"
+                onEndEditing={onEnd}/> 
             {suffix ?? suffix}
             <TouchableOpacity onPress={isPassword ? () => setIsShowPass(!isShowPass) : () => onChange('')}>
                 {isPassword ? (<FontAwesome name={isShowPass ? 'eye-slash' : 'eye'} size={22} color={COLORS.HEX_LIGHT_GRAY} />

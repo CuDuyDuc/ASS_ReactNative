@@ -16,6 +16,7 @@ interface Props {
   textFont?: string;
   onPress?: () => void;
   iconFlex?: 'right' | 'left';
+  disable?: boolean; // nút button khóa, không cho người dùng nhấn vào
 }
 
 const ButtonComponent = (props: Props) => {
@@ -29,14 +30,16 @@ const ButtonComponent = (props: Props) => {
     textStyles,
     textFont,
     onPress,
-    iconFlex } = props;
+    iconFlex,
+    disable } = props;
+  // Destructuring đối tượng
   // custom button sau đó là style riêng và cuối cùng là styles đè lên
   return  type === 'orange' ? (
-    <TouchableOpacity
+    <TouchableOpacity disabled={disable}
       onPress={onPress}
       style={[
         globalStyle.button, {
-          backgroundColor: color ?? COLORS.HEX_ORANGE,
+          backgroundColor: color ? color : disable ? COLORS.HEX_LIGHT_GREY : COLORS.HEX_ORANGE,
         }, styles]}>
       {icon && iconFlex === 'left' && icon}
       <TextComponent

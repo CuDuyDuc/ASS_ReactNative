@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Image, Switch } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { Alert, Image, Switch } from 'react-native';
 import { 
     ButtonComponent, 
     InputComponent, 
@@ -13,6 +13,10 @@ import IMAGES from '../../assets/images/Images';
 import { FONTFAMILY } from '../../../assets/fonts';
 import { Facebook, Google } from '../../assets/svgs';
 import authenticationAPI from '../../apis/authAPI';
+import { Validate } from '../../utils/validate';
+import { useDispatch } from 'react-redux';
+import { addAuth } from '../../redux/reducers/authReducer';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const LoginScreen = ({navigation}: any) => {
 
@@ -20,13 +24,36 @@ const LoginScreen = ({navigation}: any) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [isRemember, setIsRemember] = useState(false);
+    const [isDisable, setIsDisable] = useState(true);
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        const emailValidation = Validate.email(email);
+    
+        if (!email || !password || !emailValidation) {
+          setIsDisable(true);
+        } else {
+          setIsDisable(false);
+        }
+      }, [email, password]);
 
     const handleLogin = async () => {
-        try {
-            const res = await authenticationAPI.HandleAuthentication('/login');
-            console.log(res)
-        } catch (error) {
-            console.log(error)
+
+        const emailValidation = Validate.email(email);
+        if(emailValidation) {
+            try {
+                const res = await authenticationAPI.HandleAuthentication('/login', {email, password}, 'post');
+                dispatch(addAuth(res.data));
+                await AsyncStorage.setItem(
+                    'auth',
+                    isRemember ? JSON.stringify(res.data) : email,
+                  );
+                await AsyncStorage.setItem('auth', isRemember ? JSON.stringify(res.data) : email);
+            } catch (error) {
+                console.log(error)
+            }
+        } else {
+            Alert.alert('Email is not correct!!!');
         }
     }
   
@@ -80,6 +107,7 @@ const LoginScreen = ({navigation}: any) => {
             </SectionComponent>
             <SectionComponent styles={{ marginTop: 20 }}>
                 <ButtonComponent 
+                    disable= {isDisable}
                     text='ĐĂNG NHẬP' 
                     type='orange' 
                     onPress={handleLogin}/>
