@@ -14,16 +14,17 @@ interface Props {
     isPassword?: boolean, // kiểm tra xem có phải là mật khẩu hay không
     allowClear?: boolean, // khi nhập xoh họ muốn xóa thì nó là allowClear
     type?: KeyboardType,
-    onEnd?: () => void; // khi người dùng hết nhập dữ liệu
+    onEnd?: () => void,// khi người dùng hết nhập dữ liệu
+    backgroundColor?: string,
 }
 
 const InputComponent = (props: Props) => {
 
-    const { value, onChange, affix, placeholder, suffix, isPassword, allowClear, type, onEnd} = props;
+    const { value, onChange, affix, placeholder, suffix, isPassword, allowClear, type, onEnd, backgroundColor} = props;
 
     const [isShowPass, setIsShowPass] = useState(isPassword ?? false); // nếu có thì hiển thị không thì là false
     return (
-        <View style = {styles.inputContainer}>
+        <View style = {[styles.inputContainer, { backgroundColor: backgroundColor ?? 'transparent' }]}>
             {affix ?? affix}
             <TextInput
                 style = {[styles.input, globalStyle.text]}
@@ -58,7 +59,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         paddingHorizontal: 15,
-        marginBottom: 19
+        marginBottom: 19,
     },
     input: {
         padding: 0,

@@ -7,7 +7,7 @@ const COLORS = {
     HEX_LIGHT_GREY: '#AEAEAE',
     WHITE : '#FFFFFF',
     RED : 'red',
-    
+    HEX_LIGHT: '#141921',
 }
 
 export default COLORS;

@@ -8,6 +8,8 @@ const IMAGES = {
     Cart : require('./cart.png'),
     Favorites : require('./favorites.png'),
     OderHistory : require('./order_history.png'),
+    Setting: require('./setting.png'),
+    Avata: require('./avata.png'),
 }
 
 export default IMAGES;
