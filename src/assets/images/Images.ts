@@ -10,6 +10,10 @@ const IMAGES = {
     OderHistory : require('./order_history.png'),
     Setting: require('./setting.png'),
     Avata: require('./avata.png'),
+    Capuchino: require('./capuchino1.png'),
+    DolaMoney: require('./dolaMoney.png'),
+    TagCoffee: require('./iconTagCoffee.png'),
+    RobustaBeans: require('./RobustaBeans.png'),
 }
 
 export default IMAGES;
