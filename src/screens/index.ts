@@ -7,6 +7,7 @@ import Verification from "./auth/Verification";
 import EventScreen from "./events/EventScreen";
 import FavouriteScreen from "./favourites/FavouriteScreen";
 import HomeScreen from "./home/HomeScreen";
+import SettingScreen from "./home/setting/SettingScreen";
 import NotificationScreen from "./notification/NotificationScreen";
 
 export{
@@ -20,4 +21,5 @@ export{
     NotificationScreen,
     EventScreen,
     FavouriteScreen,
+    SettingScreen,
 }

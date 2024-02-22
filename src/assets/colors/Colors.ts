@@ -8,6 +8,8 @@ const COLORS = {
     WHITE : '#FFFFFF',
     RED : 'red',
     HEX_LIGHT: '#141921',
+    primaryGreyHex: '#252A32',
+    primaryBlackHex: '#0C0F14',
 }
 
 export default COLORS;

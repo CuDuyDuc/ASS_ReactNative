@@ -18,7 +18,7 @@ export const globalStyle = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: COLORS.HEX_ORANGE,
         paddingHorizontal: 10,
-        minHeight: 56,
+        height: 56,
         flexDirection: 'row'
     },
     section: {

@@ -14,6 +14,8 @@ const IMAGES = {
     DolaMoney: require('./dolaMoney.png'),
     TagCoffee: require('./iconTagCoffee.png'),
     RobustaBeans: require('./RobustaBeans.png'),
+    CapuchinoPortait: require('./cappuccino_pic_1_portrait.png'),
+    Back_Icon: require('./back_icon.png'),
 }
 
 export default IMAGES;

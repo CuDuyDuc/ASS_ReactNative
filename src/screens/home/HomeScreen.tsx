@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 import { Image, TouchableOpacity} from 'react-native';
-import { useDispatch, useSelector } from 'react-redux';
-import { authSelector } from '../../redux/reducers/authReducer';
 import { InputComponent, RowComponent, SectionComponent, TextComponent, CategoriesList, ContainerComponent, CardItemComponent} from '../../component';
 import IMAGES from '../../assets/images/Images';
 import { FONTFAMILY } from '../../../assets/fonts';
@@ -9,8 +7,10 @@ import { SearchNormal1 } from 'iconsax-react-native';
 import COLORS from '../../assets/colors/Colors';
 import { CoffeeData } from '../../data/CoffeeData';
 import { BeansCoffeeData } from '../../data/BeansCoffee';
+import { useDispatch, useSelector } from 'react-redux';
+import { authSelector } from '../../redux/reducers/authReducer';
 
-const HomeScreen = () => {
+const HomeScreen = ({navigation}: any) => {
     const [isSearch, setIsSearch] = useState('');
     const dispatch = useDispatch();
     const auth = useSelector(authSelector);
@@ -18,11 +18,11 @@ const HomeScreen = () => {
         <ContainerComponent isScroll>
             <SectionComponent styles={{ marginTop: 60 }}>
                 <RowComponent justify='space-between'>
-                    <TouchableOpacity>
-                        <Image source={IMAGES.Avata} />
+                    <TouchableOpacity  onPress={() => {navigation.navigate('SettingScreen')}}>
+                        <Image source={IMAGES.Setting} />
                     </TouchableOpacity>
                     <TouchableOpacity>
-                        <Image source={IMAGES.Setting} />
+                        <Image source={IMAGES.Avata} />
                     </TouchableOpacity>
                 </RowComponent>
             </SectionComponent>
@@ -50,7 +50,7 @@ const HomeScreen = () => {
                 <TextComponent text='Coffee beans' styles={{marginTop:25}}/>
             </SectionComponent>
             <SectionComponent>
-            <CardItemComponent  checkCartItem={false} data={BeansCoffeeData}/>
+            <CardItemComponent  checkCartItem={false} data={CoffeeData}/>
             </SectionComponent>
         </ContainerComponent>
     )

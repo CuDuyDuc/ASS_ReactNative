@@ -23,7 +23,7 @@ const LoginScreen = ({navigation}: any) => {
     // Lấy dữ liệu
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [isRemember, setIsRemember] = useState(false);
+    const [isRemember, setIsRemember] = useState(true);
     const [isDisable, setIsDisable] = useState(true);
     const dispatch = useDispatch();
 
