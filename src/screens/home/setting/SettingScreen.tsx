@@ -23,7 +23,6 @@ const SettingScreen = ({ navigation }: any) => {
     };
 
     const handleLogoutConfirmed = async () => {
-        // Thực hiện các bước đăng xuất ở đây
         await AsyncStorage.setItem('auth', auth.email);
         dispatch(removeAuth({}));
 
@@ -71,7 +70,7 @@ const SettingScreen = ({ navigation }: any) => {
                         <TouchableOpacity style={{ paddingRight: 35 }}>
                             <User size={24} color={COLORS.HEX_ORANGE} />
                         </TouchableOpacity>
-                        <TouchableOpacity style={{ flex: 0.9 }}>
+                        <TouchableOpacity style={{ flex: 0.9 }} onPress={() => navigation.navigate('PersonalDetailsScreen', {auth: auth})}>
                             <TextComponent text='Thông tin cá nhân' font={FONTFAMILY.poppins_bold} size={14} />
                         </TouchableOpacity>
                     </RowComponent>

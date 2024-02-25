@@ -1,19 +1,34 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Image, TouchableOpacity} from 'react-native';
 import { InputComponent, RowComponent, SectionComponent, TextComponent, CategoriesList, ContainerComponent, CardItemComponent} from '../../component';
 import IMAGES from '../../assets/images/Images';
 import { FONTFAMILY } from '../../../assets/fonts';
 import { SearchNormal1 } from 'iconsax-react-native';
 import COLORS from '../../assets/colors/Colors';
-import { CoffeeData } from '../../data/CoffeeData';
-import { BeansCoffeeData } from '../../data/BeansCoffee';
 import { useDispatch, useSelector } from 'react-redux';
-import { authSelector } from '../../redux/reducers/authReducer';
+import { authSelector} from '../../redux/reducers/authReducer';
+import { products } from '../../models/productsModel';
+import productAPI from '../../apis/productAPI';
 
 const HomeScreen = ({navigation}: any) => {
-    const [isSearch, setIsSearch] = useState('');
     const dispatch = useDispatch();
-    const auth = useSelector(authSelector);
+    const [isSearch, setIsSearch] = useState('');
+    const [product, setProduct] = useState<products[]>([]);
+    const filteredCoffeeArray =(value:String)=>{
+        return product.filter(item => item.type === value)
+    }
+    const getDataProduct = async ()=>{
+        try {
+            const res = await productAPI.HandleProduct('/getAllProduct');
+            const data:products[] = await res.data;
+            setProduct(data)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+    useEffect(() => {
+        getDataProduct()
+      }, []);
     return (
         <ContainerComponent isScroll>
             <SectionComponent styles={{ marginTop: 60 }}>
@@ -46,11 +61,11 @@ const HomeScreen = ({navigation}: any) => {
                 <CategoriesList />
             </SectionComponent>
             <SectionComponent>
-                <CardItemComponent  checkCartItem={false} data={CoffeeData}/>
+                <CardItemComponent navigation={navigation}  checkCartItem={false} data={filteredCoffeeArray('Coffee')}/>
                 <TextComponent text='Coffee beans' styles={{marginTop:25}}/>
             </SectionComponent>
             <SectionComponent>
-            <CardItemComponent  checkCartItem={false} data={CoffeeData}/>
+            <CardItemComponent navigation={navigation}  checkCartItem={false} data={filteredCoffeeArray('Bean')}/>
             </SectionComponent>
         </ContainerComponent>
     )

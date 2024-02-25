@@ -52,6 +52,7 @@ const LoginScreen = ({navigation}: any) => {
             } catch (error) {
                 console.log(error)
             }
+
         } else {
             Alert.alert('Email is not correct!!!');
         }
