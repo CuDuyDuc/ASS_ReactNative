@@ -19,7 +19,7 @@ import { addAuth } from '../../redux/reducers/authReducer';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
 GoogleSignin.configure({
-    webClientId : '589288383092-7g4svk811791g85c9k5946l0cdards3o.apps.googleusercontent.com',
+    webClientId : '564942702249-3hjd8r7snqvoe9gdrg9dpmf1t95dt64c.apps.googleusercontent.com',
 });
 
 const LoginScreen = ({navigation}: any) => {
