@@ -12,6 +12,7 @@ const TabNavigator = () => {
     return (
         <Tab.Navigator screenOptions={({ route }) => ({
             headerShown: false,
+            tabBarHideOnKeyboard: true,
             tabBarStyle: {
                 height: 60,
                 justifyContent: 'center',

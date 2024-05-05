@@ -8,10 +8,8 @@ import COLORS from '../../../assets/colors/Colors';
 import { Validate } from '../../../utils/validate';
 import { useDispatch, useSelector } from 'react-redux';
 import KeyboardAvoidingViewWrapper from '../../../component/KeyboardAvoidingWrapper';
-import authenticationAPI from '../../../apis/authAPI';
 import {authSelector } from '../../../redux/reducers/authReducer';
 import { UserModel } from '../../../models/usersModel';
-import { ObjectId } from 'mongoose';
 
 const initValues = {
     username: '',

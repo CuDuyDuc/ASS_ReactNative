@@ -111,10 +111,10 @@ const DetailsScreen = ({ route, navigation }: any) => {
             <TextComponent text='Giá' />
             <RowComponent>
               <TextComponent text='$' styles={{ marginRight: 10 }} size={24} font={FONTFAMILY.poppins_bold} color={COLORS.HEX_ORANGE} />
-              <TextComponent text={price} font={FONTFAMILY.poppins_bold} size={24} />
+              <TextComponent text={price != '' ? price: '0'} font={FONTFAMILY.poppins_bold} size={24} />
             </RowComponent>
           </RowComponent>
-          <ButtonComponent styles={{ height: 56 }} text='Thêm Vào Giỏ Hàng' type='orange' />
+          <ButtonComponent disable= {price != '' ? false: true} styles={{ height: 56 }} text='Thêm Vào Giỏ Hàng' type='orange' onPress={()=>navigation.navigate('Giỏ Hàng')}/>
         </RowComponent>
       </SectionComponent>
     </ContainerComponent>

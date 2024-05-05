@@ -17,6 +17,7 @@ const IMAGES = {
     heart: require('./heart.png'),
     Coffee: require('./coffee.png'),
     Milk: require('./milk.png'),
+    Cappuccino: require('./cappuccino_pic_1_portrait.png'),
 }
 
 export default IMAGES;

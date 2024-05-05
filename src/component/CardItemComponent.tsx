@@ -1,4 +1,4 @@
-import { View, Image, FlatList } from 'react-native'
+import { View, Image, FlatList, StyleProp, ViewStyle } from 'react-native'
 import React from 'react'
 import COLORS from '../assets/colors/Colors';
 import { ButtonComponent, RowComponent, TextComponent } from '.';
@@ -14,12 +14,13 @@ interface Props{
     quantity?:string,
     checkCartItem:boolean,
     onPressPlus?: () => void;
+    styles?:StyleProp<ViewStyle>
 }
 const CoffeeCard = (props:Props) => {
-    const {image,name,description,size,price,quantity,checkCartItem,onPressPlus} =props
+    const {image,name,description,size,price,quantity,checkCartItem,onPressPlus,styles} =props
 
   return (
-    <View>
+    <View style={styles}>
        <LinearGradient
         start={{x: 0, y: 0}}
         end={{x: 1, y: 1}}
@@ -86,6 +87,7 @@ const CardItemComponent = ({ checkCartItem, data,navigation }: { checkCartItem: 
         <FlatList
             data={data}
             horizontal
+            style={{paddingHorizontal:20}}
             keyExtractor={(item)=>item._id}
             renderItem={({ item }) => (
                 <CoffeeCard

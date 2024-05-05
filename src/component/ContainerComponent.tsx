@@ -1,4 +1,4 @@
-import { View, ImageBackground, ScrollView, StyleProp, ViewStyle, SafeAreaView } from 'react-native'
+import { View, ImageBackground, ScrollView, SafeAreaView } from 'react-native'
 import React, { ReactNode } from 'react'
 import { globalStyle } from '../styles/globalStyle';
 

@@ -17,6 +17,10 @@ import { Validate } from '../../utils/validate';
 import { useDispatch } from 'react-redux';
 import { addAuth } from '../../redux/reducers/authReducer';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { GoogleSignin } from '@react-native-google-signin/google-signin';
+GoogleSignin.configure({
+    webClientId : '564942702249-hbtu52j83vred61id2b4ndlsd5tpesa8.apps.googleusercontent.com',
+});
 
 const LoginScreen = ({navigation}: any) => {
 
@@ -55,6 +59,20 @@ const LoginScreen = ({navigation}: any) => {
 
         } else {
             Alert.alert('Email is not correct!!!');
+        }
+    }
+
+    const handleLoginWithGoogle = async () => {
+        await GoogleSignin.hasPlayServices({
+            showPlayServicesUpdateDialog: true, // hiển thị dialog chọn gg đăng nhập
+        });
+        try {
+            await GoogleSignin.hasPlayServices();
+
+            const userInfo = await GoogleSignin.signIn(); // gọi đến đăng nhập
+            console.log(userInfo.user);
+        } catch (error) {
+            console.log(error)
         }
     }
   
@@ -128,6 +146,7 @@ const LoginScreen = ({navigation}: any) => {
                         text='Google' 
                         iconFlex='left'
                         type='orange'
+                        onPress={handleLoginWithGoogle}
                         styles = {{
                             backgroundColor: COLORS.WHITE, 
                             flex: 1, 
