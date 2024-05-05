@@ -19,7 +19,7 @@ import { addAuth } from '../../redux/reducers/authReducer';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
 GoogleSignin.configure({
-    webClientId : '564942702249-hbtu52j83vred61id2b4ndlsd5tpesa8.apps.googleusercontent.com',
+    webClientId : '589288383092-7g4svk811791g85c9k5946l0cdards3o.apps.googleusercontent.com',
 });
 
 const LoginScreen = ({navigation}: any) => {
@@ -29,6 +29,7 @@ const LoginScreen = ({navigation}: any) => {
     const [password, setPassword] = useState('');
     const [isRemember, setIsRemember] = useState(true);
     const [isDisable, setIsDisable] = useState(true);
+    const [isLoading, setIsLoading] = useState(false);
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -66,11 +67,21 @@ const LoginScreen = ({navigation}: any) => {
         await GoogleSignin.hasPlayServices({
             showPlayServicesUpdateDialog: true, // hiển thị dialog chọn gg đăng nhập
         });
+
+        const api = '/signInWithGoogle';
+        setIsLoading(true);
         try {
             await GoogleSignin.hasPlayServices();
 
             const userInfo = await GoogleSignin.signIn(); // gọi đến đăng nhập
-            console.log(userInfo.user);
+            const user = userInfo.user
+            const res: any = await authenticationAPI.HandleAuthentication(api, user, 'post')
+            // console.log(res);
+            dispatch(addAuth(res.data));
+            await AsyncStorage.setItem(
+                'auth',
+                JSON.stringify(res.data),
+            );
         } catch (error) {
             console.log(error)
         }
