@@ -18,10 +18,13 @@ import { useDispatch } from 'react-redux';
 import { addAuth } from '../../redux/reducers/authReducer';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
+import { LoadingModal } from '../../modal';
+import { LoginManager, Profile, Settings } from 'react-native-fbsdk-next';
 GoogleSignin.configure({
     webClientId : '564942702249-3hjd8r7snqvoe9gdrg9dpmf1t95dt64c.apps.googleusercontent.com',
 });
 
+Settings.setAppID('982686596245360');
 const LoginScreen = ({navigation}: any) => {
 
     // Lấy dữ liệu
@@ -86,6 +89,47 @@ const LoginScreen = ({navigation}: any) => {
             console.log(error)
         }
     }
+
+    const handleLoginWithFacebook = async () => {
+        const api = '/signInWithGoogle';
+        try {
+            const result = await LoginManager.logInWithPermissions([
+                'public_profile',
+            ]);
+
+            if (result.isCancelled) {
+                console.log('Login cancel');
+            } else {
+                const profile = await Profile.getCurrentProfile();
+
+                if (profile) {
+                    setIsLoading(true);
+                    const data = {
+                        name: profile.name,
+                        givenName: profile.firstName,
+                        familyName: profile.lastName,
+                        email: profile.userID, // vì khi lấy thông tin của ng dùng trên fb thì không có email nên lấy userID làm thế
+                        // mục đích để khi người dùng đăng nhập lại thì mình biết nó đã tồn tại hay chưa và nó biết để cập nhật hoặc tạo mới.
+                        photo: profile.imageURL,
+                    };
+
+                    const res: any = await authenticationAPI.HandleAuthentication(
+                        api,
+                        data,
+                        'post',
+                    );
+
+                    dispatch(addAuth(res.data));
+
+                    await AsyncStorage.setItem('auth', JSON.stringify(res.data));
+
+                    setIsLoading(false);
+                }
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    };
   
     return (
         <KeyboardAvoidingWrapper>
@@ -183,6 +227,7 @@ const LoginScreen = ({navigation}: any) => {
                     }}/>
                 </RowComponent>
             </SectionComponent>
+            <LoadingModal visible={isLoading} />
         </KeyboardAvoidingWrapper>
     )
 }
