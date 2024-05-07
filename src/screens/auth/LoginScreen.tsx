@@ -213,6 +213,7 @@ const LoginScreen = ({navigation}: any) => {
                         text='Facebook' 
                         iconFlex='left'
                         type='orange'
+                        onPress={handleLoginWithFacebook}
                         styles = {{backgroundColor: COLORS.WHITE, flex: 1}}
                         textColor={COLORS.HEX_LIGHT_GREY}
                         icon= {<Facebook/>}/>    
